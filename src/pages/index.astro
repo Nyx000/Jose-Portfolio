@@ -1,24 +1,132 @@
 ---
-import PictureGridLayout from '../layouts/PictureGridLayout.astro';
+// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Component Imports
+import Hero from "../components/Hero.astro";
+
+// Page section components
+import ContactCTA from "../components/ContactCTA.astro";
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
 ---
 
-<PictureGridLayout>
-  <div slot="category1">
-    <!-- Insert your pictures for category 1 here -->
-    <img src="/path/to/image1.jpg" alt="Image 1 for Category 1" />
-    <img src="/path/to/image2.jpg" alt="Image 2 for Category 1" />
-    <!-- ... -->
+<BaseLayout>
+  <div class="stack gap-20 lg:gap-48">
+    <div class="wrapper stack gap-8 lg:gap-20">
+      <header class="hero">
+        <Hero
+          title="Beachside Picnics"
+          tagline="We create beachside experiences, luxiorious food platters, and creative party decors"
+          align="start"
+        />
+      </header>
+    </div>
+
+    <main style="display:flex; align-items: stretch; gap: .5em;">
+      <div class="Beaches">
+        <img src="./BeachPics/main_beach.jpg" />
+        <img src="./BeachPics/beach_setup.jpg" />
+        <img src="./BeachPics/plate_beach.jpg" />
+        <img src="./BeachPics/woman_beach.jpg" />
+      </div>
+      <div class="Food">
+        <img src="./FoodPics/cheesy_board.jpg" />
+        <img src="./FoodPics/desserts.jpg" />
+        <img src="./FoodPics/ham_pears.png" />
+      </div>
+      <div class="Pirate">
+        <img src="./PiratePics/pirate_balloons.jpg" />
+        <img src="./PiratePics/pirate_ceiling.jpg" />
+        <img src="./PiratePics/pirate_ship.jpg" />
+      </div>
+    </main>
   </div>
-  <div slot="category2">
-    <!-- Insert your pictures for category 2 here -->
-    <img src="/path/to/image3.jpg" alt="Image 1 for Category 2" />
-    <img src="/path/to/image4.jpg" alt="Image 2 for Category 2" />
-    <!-- ... -->
-  </div>
-  <div slot="category3">
-    <!-- Insert your pictures for category 3 here -->
-    <img src="/path/to/image5.jpg" alt="Image 1 for Category 3" />
-    <img src="/path/to/image6.jpg" alt="Image 2 for Category 3" />
-    <!-- ... -->
-  </div>
-</PictureGridLayout>
+  <ContactCTA />
+</BaseLayout>
+
+<style>
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  @media (min-width: 50em) {
+    .hero {
+      display: grid;
+      grid-template-columns: 6fr 4fr;
+      padding-inline: 2.5rem;
+      gap: 3.75rem;
+    }
+
+    .roles {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .hero img {
+      aspect-ratio: 3 / 4;
+      border-radius: 4.5rem;
+      object-fit: cover;
+    }
+  }
+
+  /* ====================================================== */
+
+  .section {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .with-background {
+    position: relative;
+  }
+
+  .with-background::before {
+    --hero-bg: var(--bg-image-subtle-2);
+
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    left: 50%;
+    width: 100vw;
+    aspect-ratio: calc(2.25 / var(--bg-scale));
+    top: 0;
+    transform: translateY(-75%) translateX(-50%);
+    background:
+      url("/assets/backgrounds/noise.png") top center/220px repeat,
+      var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
+      var(--gray-999);
+    background-blend-mode: overlay, normal, normal, normal;
+    mix-blend-mode: var(--bg-blend-mode);
+    z-index: -1;
+  }
+
+  .with-background.bg-variant::before {
+    --hero-bg: var(--bg-image-subtle-1);
+  }
+
+  .section-header {
+    justify-self: center;
+    text-align: center;
+    max-width: 50ch;
+    font-size: var(--text-md);
+    color: var(--gray-300);
+  }
+
+  .section-header h3 {
+    font-size: var(--text-2xl);
+  }
+
+  .section-header {
+    grid-area: header;
+    font-size: var(--text-lg);
+  }
+
+  .section-header h3 {
+    font-size: var(--text-4xl);
+  }
+</style>
