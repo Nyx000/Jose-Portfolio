@@ -24,7 +24,9 @@ import ContactCTA from "../components/ContactCTA.astro";
       </header>
     </div>
 
-    <main style="display:flex; align-items: stretch; gap: .5em;">
+    <main
+      style="display:block; margin-left: auto; margin-right: auto; width: 70%; gap: 1em;"
+    >
       <div class="Beaches">
         <img src="./BeachPics/main_beach.jpg" />
         <img src="./BeachPics/beach_setup.jpg" />
@@ -52,26 +54,6 @@ import ContactCTA from "../components/ContactCTA.astro";
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-  }
-  @media (min-width: 50em) {
-    .hero {
-      display: grid;
-      grid-template-columns: 6fr 4fr;
-      padding-inline: 2.5rem;
-      gap: 3.75rem;
-    }
-
-    .roles {
-      margin-top: 0.5rem;
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .hero img {
-      aspect-ratio: 3 / 4;
-      border-radius: 4.5rem;
-      object-fit: cover;
-    }
   }
 
   /* ====================================================== */
