@@ -33,7 +33,7 @@ const getThemePreference = () => {
 		? "dark"
 		: "light";
 };
-const isDark = getThemePreference() === "dark";
+const isDark = getThemePreference() === "light";
 document.documentElement.classList[isDark ? "add" : "remove"]("theme-dark");
 
 if (typeof localStorage !== "undefined") {
